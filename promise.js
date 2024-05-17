@@ -53,4 +53,23 @@ promiseFour.then((user) => {
     console.log(username)
 }).catch(function(error){
     console.log(error);
-})
+}).finally(() => console.log("The Promise is either resolved or rejected"))
+
+
+const promiseFive = new Promise(function(resolve, reject){
+    setTimeout(function(){
+        let error = true
+        if (!error){
+            resolve({username: "Akash Kr", password: "12345"})
+        } else {
+            reject('ERROR: Execution went wrong')
+        }
+    }, 1000)
+});
+
+async function consumePromiseFive(){
+    const response = await promiseFive
+    console.log(response);
+}
+
+consumePromiseFive()
